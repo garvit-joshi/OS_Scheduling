@@ -1,7 +1,6 @@
 #include<bits/stdc++.h>
 #include<iostream>
 #include<windows.h>
-#include<algorithm.h>
 using namespace std;
 int max_arrival=-1,min_arrival=INT_MAX;              	 //Global Variable
 struct Process
