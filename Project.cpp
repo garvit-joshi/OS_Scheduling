@@ -34,7 +34,7 @@ bool comparison_RemainingTime(Process a,Process b)    	 //Driver Function-Sortin
     	return (a.remaining_time < b.remaining_time);
 }
 /*
-The Above Three Functions Are Used As A Parameter In sort() functions.
+The Above Four Functions Are Used As A Parameter In sort() functions.
 They act as helping functions to sort the process according to our need
 */
 int display(bool prompt=false)
