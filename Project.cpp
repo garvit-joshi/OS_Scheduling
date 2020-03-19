@@ -5,7 +5,6 @@ using namespace std;
 int max_arrival=-1,min_arrival=INT_MAX;              	 //Global Variable
 struct Process
 {
-    	bool first_time=false;                           //false=has not got cpu for first time
     	int pid=0;                                       //Process ID
     	int priority=0;                                  //the Priority 0 is highest priority
     	int arrival_time=0;                              //Time At Which Process Came
@@ -39,7 +38,8 @@ The Above Three Functions Are Used As A Parameter In sort() functions.
 They act as helping functions to sort the process according to our need
 */
 int display(bool prompt=false)
-{	
+{
+		/*Display Function Used for displaying the question at the starting of program*/	
     	time_t now = time(0);
     	char* dt = ctime(&now);
     	cout<< dt;
@@ -94,11 +94,13 @@ int Enter_Process(int &temp,Process p[],int i)
     	cin>>p[i].arrival_time;
     	if(p[i].arrival_time<min_arrival)
     	{
-        		min_arrival=p[i].arrival_time;          //Calculating Minimum Arrival Time
+				/*Calculating Minimum Arrival time*/
+        		min_arrival=p[i].arrival_time;
     	}
     	if(p[i].arrival_time>max_arrival)
     	{
-        		max_arrival=p[i].arrival_time;           //Calculating Maximum Arrival Time
+				/*Calculating Maximum Arrival Time*/
+        		max_arrival=p[i].arrival_time;          
     	}
     	cout<<"Enter Burst Time:";
     	cin>>p[i].burst_time;
@@ -110,13 +112,13 @@ int Show_Process(Process p[],int n,bool b=false)
 {
     	if(b==false)
     	{
-        	/*By Default This Conditional Statement Will Work,
-        	It Will Only Show PID,Priority,Arrival Time,Burst Time*/
-        	cout<<"\nPID || Priority || Arrival Time || Burst Time\n";
-        	for(int i=0;i<n;i++)
-        	{
-            		cout<<p[i].pid<<"\t"<<p[i].priority<<"\t\t"<<p[i].arrival_time<<"\t\t"<<p[i].burst_time<<"\n";
-        	}
+        		/*By Default This Conditional Statement Will Work,
+        		It Will Only Show PID,Priority,Arrival Time,Burst Time*/
+        		cout<<"\nPID || Priority || Arrival Time || Burst Time\n";
+        		for(int i=0;i<n;i++)
+        		{
+            			cout<<p[i].pid<<"\t"<<p[i].priority<<"\t\t"<<p[i].arrival_time<<"\t\t"<<p[i].burst_time<<"\n";
+        		}
     	}
     	else if(b==true)
     	{
@@ -190,14 +192,13 @@ int FPPS(Process p[],int n,int &time)
         		Executes The Process for 1 unit time
         		*/
 				p[small_priority_index].remaining_time--;
-        		if(p[small_priority_index].first_time==false)
+        		if(p[small_priority_index].CPUtime==-1)
         		{
          				/*
             			This Conditional Statement tells 
             			what was the time when the process 
             			was first time executed.
             			*/
-            			p[small_priority_index].first_time=true;
             			p[small_priority_index].CPUtime=time;
         		}
         		time++;
@@ -223,12 +224,11 @@ int FPPS(Process p[],int n,int &time)
         		return 0;
     	} 
     	p[small_priority_index].remaining_time=0;
-    	if(p[small_priority_index].first_time==false)
+    	if(p[small_priority_index].CPUtime==-1)
     	{
         		/*This Conditional Statement Gives
         		tells what was the time when the process 
         		was first time executed.*/
-        		p[small_priority_index].first_time=true;
         		p[small_priority_index].CPUtime=time;
     	}
     	time+=remaining_time;
@@ -311,14 +311,13 @@ int Round_Robin(Process p[],int n,int tq,int &time)    //Round Robin Scheduling
                     					*/
                     					remaining_time=p[i].remaining_time;
                     					p[i].remaining_time=0;
-                    					if(p[i].first_time==false)
+                    					if(p[i].CPUtime==-1)
                     					{
                         						/*
                         						This Conditional Statement Gives
                         						tells what was the time when the process 
                         						was first time executed.
                         						*/
-                        						p[i].first_time=true;
                         						p[i].CPUtime=time;
                     					}
                     					time+=remaining_time;
@@ -331,12 +330,11 @@ int Round_Robin(Process p[],int n,int tq,int &time)    //Round Robin Scheduling
                     					and then store it in ready_queue
                     					*/
                     					p[i].remaining_time-=tq;
-                    					if(p[i].first_time==false)
+                    					if(p[i].CPUtime==-1)
                     					{
                         						/*This Conditional Statement Gives
                         						tells what was the time when the process 
                         						was first time executed.*/
-                        						p[i].first_time=true;
                         						p[i].CPUtime=time;
                     					}	
                     					time+=tq;
