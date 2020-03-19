@@ -1,4 +1,4 @@
-### Test Case 1:
+# Test Case 1:
 
 ## Input:
 | PID 	| Priority 	| Arrival Time 	| Burst Time 	|
