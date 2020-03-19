@@ -403,7 +403,6 @@ int Round_Robin(Process p[],int n,int tq,int &time)    //Round Robin Scheduling
             			ready_queue.push_back(cur);
         		}
     	}
-    	cout<<"\nTime:"<<time;
     	return 0;
 }
 int main()
@@ -438,6 +437,7 @@ int main()
     	sort(p,p+n,comparison_PID);
     	Show_Process(p,n,true); 
     	cout<<"\n";
+		cout<<"All Process Completed In "<<time<<" unit time.\n\n";
     	system("pause");
     	return 0;
 }
