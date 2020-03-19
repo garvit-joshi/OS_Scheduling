@@ -1,8 +1,126 @@
-| Available 	  | Process 	| Allocation 	     |     Max 	       |
-|---------------|-----------|:----------------:|----------------:|
-| A | B | C | D |         	|   A | B | C | D  | A | B | C | D   |
-|         	    | P0      	|   0 | 0 | 1 | 2  | 0 | 0 | 1 | 2 	 |
-|           	  | P1      	|   1 | 0 | 0 | 0  | 1 | 7 | 5 | 0   |
-|           	  | P2      	|   1 | 3 | 5 | 4  | 2 | 3 | 5 | 6 	 |
-|           	  | P3      	|   0 | 6 | 3 | 2  | 0 | 6 | 5 | 2 	 |
-|           	  | P4      	|   0 | 0 | 1 | 4  | 0 | 6 | 5 | 6 	 |
+<table>
+  <tr>
+    <td colspan="4">
+      Available
+    </td>
+    <td rowspan="2">
+      Processes
+    </td>
+    <td colspan="4">
+      Allocation
+    </td>
+    <td colspan="4">
+      Max
+    </td>
+  </tr>
+  <tr>
+    <td>
+      A
+    </td>
+    <td>
+      B
+    </td>
+    <td>
+      C
+    </td>
+    <td>
+      D
+    </td>
+    <td>
+      A
+    </td>
+    <td>
+      B
+    </td>
+    <td>
+      C
+    </td>
+    <td>
+      D
+    </td>
+    <td>
+      A
+    </td>
+    <td>
+      B
+    </td>
+    <td>
+      C
+    </td>
+    <td>
+      D
+    </td>
+  </tr>
+  <tr>
+    <td>
+      1
+    </td>
+    <td>
+      5
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      0
+    </td>
+    <td>
+      P0
+    </td>
+    <td>
+      0
+    </td>
+    <td>
+      0
+    </td>
+    <td>
+      1
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      0
+    </td>
+    <td>
+      0
+    </td>
+    <td>
+      1
+    </td>
+    <td>
+      2
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+    </td>
+    <td>
+      P1
+    </td>
+    <td>
+      1
+    </td>
+    <td>
+      0
+    </td>
+    <td>
+      0
+    </td>
+    <td>
+      0
+    </td>
+    <td>
+      1
+    </td>
+    <td>
+      7
+    </td>
+    <td>
+      5
+    </td>
+    <td>
+      0
+    </td>
+  </tr>
+</table>
