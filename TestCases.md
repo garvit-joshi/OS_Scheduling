@@ -21,4 +21,4 @@ Enter Time Quantum(Multiples Of two):2
 | 4   	| 1        	| 2            	| 3          	| 8               	| 6               	| 3            	| 5             	|
 | 5   	| 4        	| 2            	| 6          	| 27              	| 25              	| 19           	| 17            	|
 
-All Process Completed In 29 unit time.
+All Processes Completed In 29 unit time.
