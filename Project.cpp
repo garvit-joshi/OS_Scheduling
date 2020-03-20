@@ -39,7 +39,9 @@ They act as helping functions to sort the process according to our need
 */
 int display(bool prompt=false)
 {
-		/*Display Function Used for displaying the question at the starting of program*/	
+		/*
+		Display Function Used for displaying the question at the starting of program
+		*/	
     	time_t now = time(0);
     	char* dt = ctime(&now);
     	cout<< dt;
@@ -94,12 +96,16 @@ int Enter_Process(int &temp,Process p[],int i)
     	cin>>p[i].arrival_time;
     	if(p[i].arrival_time<min_arrival)
     	{
-				/*Calculating Minimum Arrival time*/
+				/*
+				Calculating Minimum Arrival time
+				*/
         		min_arrival=p[i].arrival_time;
     	}
     	if(p[i].arrival_time>max_arrival)
     	{
-				/*Calculating Maximum Arrival Time*/
+				/*
+				Calculating Maximum Arrival Time
+				*/
         		max_arrival=p[i].arrival_time;          
     	}
     	cout<<"Enter Burst Time:";
@@ -112,8 +118,10 @@ int Show_Process(Process p[],int n,bool b=false)
 {
     	if(b==false)
     	{
-        		/*By Default This Conditional Statement Will Work,
-        		It Will Only Show PID,Priority,Arrival Time,Burst Time*/
+        		/*
+				By Default This Conditional Statement Will Work,
+        		It Will Only Show PID,Priority,Arrival Time,Burst Time
+				*/
         		cout<<"\nPID || Priority || Arrival Time || Burst Time\n";
         		for(int i=0;i<n;i++)
         		{
