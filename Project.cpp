@@ -130,8 +130,10 @@ int Show_Process(Process p[],int n,bool b=false)
     	}
     	else if(b==true)
     	{
-        		/*This Works when the function call is called with a third
-        		parameter which must be true*/
+        		/*
+				This Works when the function call is called with a third
+        		parameter which must be true
+				*/
         		cout<<"\nPID || Priority || Arrival Time || Burst Time || Completion Time || TurnAround Time || Waiting Time || Response Time\n";
         		for(int i=0;i<n;i++)
         		{
