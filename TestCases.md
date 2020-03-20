@@ -1,4 +1,4 @@
-# Test Case 1:
+# Test Case #1:
 
 ## Input:
 | PID 	| Priority 	| Arrival Time 	| Burst Time 	|
@@ -22,3 +22,5 @@ Enter Time Quantum(Multiples Of two):2
 | 5   	| 4        	| 2            	| 6          	| 27              	| 25              	| 19           	| 17            	|
 
 All Processes Completed In 29 unit time.
+## Status: 
+### Passed
