@@ -9,7 +9,8 @@
 | 4   	| 1        	| 2            	| 3          	|
 | 5   	| 4        	| 2            	| 6          	|
 
-Enter Time Quantum(Multiples Of two):2
+Enter Time Quantum(Multiples Of two):2 <br>
+<img src =Screenshots/2.Enter%20Input.PNG width="650" height="350" alt="Input Processes">
 
 ## Output:
 
@@ -21,6 +22,8 @@ Enter Time Quantum(Multiples Of two):2
 | 4   	| 1        	| 2            	| 3          	| 8               	| 6               	| 3            	| 5             	|
 | 5   	| 4        	| 2            	| 6          	| 27              	| 25              	| 19           	| 17            	|
 
-All Processes Completed In 29 unit time.
+All Processes Completed In 29 unit time.<br>
+<img src =Screenshots/3.Output.PNG width="650" height="350" alt="Output">
+
 ## Status: 
 ### Passed
