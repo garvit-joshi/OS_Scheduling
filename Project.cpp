@@ -58,7 +58,7 @@ int display(bool prompt=false)
     	cout<<"\t\t ||  preempts currently running process P1 and process P1 will go to second level queue.    ||\n";
     	cout<<"\t\t ||  Time for which process will strictly execute must be considered in the multiples of 2. ||\n";
     	cout<<"\t\t ||  All the processes in second level queue will complete their execution according to     ||\n";
-    	cout<<"\t\t ||  round robin scheduling.                                                            */   ||\n";
+    	cout<<"\t\t ||  round robin scheduling.                                                            */  ||\n";
     	cout<<"\t\t ||                                                                                         ||\n";
     	cout<<"\t\t=================================================================================================\n";
     	cout<<"\t\t ||  /*CONSIDER*/                                                                           ||\n";
@@ -181,8 +181,10 @@ int FPPS(Process p[],int n,int &time)
             			}	
             			else
             			{
-                				/*Value of current signifies the processes index
-                				which can be executed in the CPU.*/
+                				/*
+								Value of current signifies the processes index
+                				which can be executed in the CPU.
+								*/
                 				break;
             			}	
         		}
