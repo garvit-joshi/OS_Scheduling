@@ -419,7 +419,11 @@ int Round_Robin(Process p[],int n,int tq,int &time)    //Round Robin Scheduling
 }
 int main()
 {
-   	 	display();                      //Function For Displaying The Question
+   	 	display();
+		/*
+		Just Comment The above function call if you are testing the code:
+		this function may take upto more then 5 seconds
+		*/
     	int n,temp=0,time_q,time=0;
     	cout<<"\t\t\tOperating System Scheduling\n\t\t\t\t\t\t-Garvit Joshi\n";
     	cout<<"Enter No. Of Processes:";
