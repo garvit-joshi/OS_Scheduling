@@ -173,7 +173,9 @@ int FPPS(Process p[],int n,int &time)
         		int small_priority=INT_MAX;
         		for(int i=0;i<n;i++)                           
         		{
-            			/*loop to find how many processes are in ready queue.*/ 
+            			/*
+						loop to find how many processes are in ready queue.
+						*/ 
             			if(p[i].arrival_time<=time)
             			{
                 				current=i;
@@ -191,8 +193,10 @@ int FPPS(Process p[],int n,int &time)
         		int s=0;
         		while(s<=current)
         		{
-        	 			/*Loop Finds Out The Smallest Priority Of The Current
-            			Ready Processes*/
+        	 			/*
+						 Loop Finds Out The Smallest Priority Of The Current
+            			Ready Processes
+						*/
             			if(p[s].priority<small_priority && p[s].remaining_time!=0)
             			{
                 				small_priority=p[s].priority;
@@ -238,9 +242,11 @@ int FPPS(Process p[],int n,int &time)
     	p[small_priority_index].remaining_time=0;
     	if(p[small_priority_index].CPUtime==-1)
     	{
-        		/*This Conditional Statement Gives
+        		/*
+				This Conditional Statement Gives
         		tells what was the time when the process 
-        		was first time executed.*/
+        		was first time executed.
+				*/
         		p[small_priority_index].CPUtime=time;
     	}
     	time+=remaining_time;
@@ -279,9 +285,11 @@ int Round_Robin(Process p[],int n,int tq,int &time)    //Round Robin Scheduling
     	{
        			if(p[i].remaining_time==0)
         		{
-            			/*If A Process Has Remaining time as zero
+            			/*
+						If A Process Has Remaining time as zero
             			We take a partially running process from
-            			ready_queue and execute it*/
+            			ready_queue and execute it
+						*/
             			if(!ready_queue.empty())
             			{
                 				cur=ready_queue[0];
@@ -344,9 +352,11 @@ int Round_Robin(Process p[],int n,int tq,int &time)    //Round Robin Scheduling
                     					p[i].remaining_time-=tq;
                     					if(p[i].CPUtime==-1)
                     					{
-                        						/*This Conditional Statement Gives
+                        						/*
+												This Conditional Statement Gives
                         						tells what was the time when the process 
-                        						was first time executed.*/
+                        						was first time executed.
+												*/
                         						p[i].CPUtime=time;
                     					}	
                     					time+=tq;
