@@ -92,8 +92,20 @@ long Enter_Process(long &temp,Process p[],long i)
     	p[i].pid=temp;
     	cout<<"\nEnter Priority:";
     	cin>>p[i].priority;
+		while(p[i].priority<0)
+		{
+				cout<<"\t\t\t\tWarning: A Process Cannot Have Priority In Negative.\n";
+				cout<<"Please Enter Priority Again:";
+				cin>>p[i].priority;
+		}
     	cout<<"Enter Arrival Time:";
     	cin>>p[i].arrival_time;
+		while(p[i].arrival_time<0)
+		{
+			cout<<"\t\t\t\tWarning: A Process Cannot Have Arrival Time In Negative.\n";
+			cout<<"Please Enter Arrival Time Again:";
+			cin>>p[i].arrival_time;
+		}
     	if(p[i].arrival_time<min_arrival)
     	{
 				/*
@@ -110,6 +122,12 @@ long Enter_Process(long &temp,Process p[],long i)
     	}
     	cout<<"Enter Burst Time:";
     	cin>>p[i].burst_time;
+		while(p[i].burst_time<0)
+		{
+				cout<<"\t\t\t\tWarning: A Process Cannot Have Burst Time In Negative.\n";
+				cout<<"Please Enter Burst Time Again:";
+				cin>>p[i].burst_time;
+		}
     	p[i].remaining_time=p[i].burst_time;
     	cout<<"====================================================\n";
     	return 0;
