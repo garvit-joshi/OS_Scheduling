@@ -1,8 +1,13 @@
 #include<bits/stdc++.h>
 #include<iostream>
-#include<windows.h>
+#include<windows.h>                                       //Sleep() function
 using namespace std;
-long max_arrival=-1,min_arrival=INT_MAX;              	 //Global Variable
+long max_arrival=-1,min_arrival=INT_MAX,warning=1;        //Global Variable
+/*
+max_arrival will store the maximim arrival time of a process
+min_arrival will store the minimul arrival time of a process
+warning will store the no. of warning that came in during program execution(due to user input and constraints)
+*/
 struct Process
 {
     	long pid=0;                                       //Process ID
@@ -94,17 +99,19 @@ long Enter_Process(long &temp,Process p[],long i)
     	cin>>p[i].priority;
 		while(p[i].priority<0)
 		{
-				cout<<"\t\t\t\tWarning: A Process Cannot Have Priority In Negative.\n";
+				cout<<"\t\t\t\tWarning "<<warning<<": A Process Cannot Have Priority In Negative.\n";
 				cout<<"Please Enter Priority Again:";
 				cin>>p[i].priority;
+				warning++;
 		}
     	cout<<"Enter Arrival Time:";
     	cin>>p[i].arrival_time;
 		while(p[i].arrival_time<0)
 		{
-			cout<<"\t\t\t\tWarning: A Process Cannot Have Arrival Time In Negative.\n";
-			cout<<"Please Enter Arrival Time Again:";
-			cin>>p[i].arrival_time;
+				cout<<"\t\t\t\tWarning "<<warning<<": A Process Cannot Have Arrival Time In Negative.\n";
+				cout<<"Please Enter Arrival Time Again:";
+				cin>>p[i].arrival_time;
+				warning++;
 		}
     	if(p[i].arrival_time<min_arrival)
     	{
@@ -124,9 +131,10 @@ long Enter_Process(long &temp,Process p[],long i)
     	cin>>p[i].burst_time;
 		while(p[i].burst_time<0)
 		{
-				cout<<"\t\t\t\tWarning: A Process Cannot Have Burst Time In Negative.\n";
+				cout<<"\t\t\t\tWarning "<<warning<<": A Process Cannot Have Burst Time In Negative.\n";
 				cout<<"Please Enter Burst Time Again:";
 				cin>>p[i].burst_time;
+				warning++;
 		}
     	p[i].remaining_time=p[i].burst_time;
     	cout<<"====================================================\n";
@@ -168,9 +176,18 @@ long calculation(Process p[],long n)
     	*/
     	for(long i=0;i<n;i++)
     	{
-        		p[i].turnaround_time=p[i].completion_time-p[i].arrival_time;
-        		p[i].waiting_time=p[i].turnaround_time-p[i].burst_time;
-        		p[i].response_time=p[i].CPUtime-p[i].arrival_time;
+				if(p[i].burst_time==0)
+				{
+						p[i].turnaround_time=0;
+        				p[i].waiting_time=0;
+        				p[i].response_time=0;
+				}
+				else
+				{
+						p[i].turnaround_time=p[i].completion_time-p[i].arrival_time;
+        				p[i].waiting_time=p[i].turnaround_time-p[i].burst_time;
+        				p[i].response_time=p[i].CPUtime-p[i].arrival_time;
+				}
     	}
     	return 0;
 }
@@ -181,8 +198,19 @@ long FPPS(Process p[],long n,long &time)
     	Executed in the oreder of there priority
     	Less Priority Number=More Priority For That Process
     	*/
+		system("CLS");
+		if(n==1)
+		{
+			/*
+			If No Of Processes is One OS we have o just execute
+			it in FPPS.
+			*/
+			time=p[0].arrival_time+p[0].burst_time;
+			p[0].completion_time=time;
+			p[0].CPUtime=p[0].arrival_time;
+			return 0;
+		}
     	time=min_arrival;
-    	system("CLS");
     	sort(p, p + n, comparison_Priority);
     	sort(p, p + n, comparison_ArrivalTime);
     	long min_priority,k,current,small_priority_index;
@@ -279,6 +307,13 @@ long FPPS(Process p[],long n,long &time)
 }
 long Round_Robin(Process p[],long n,long tq,long &time)    //Round Robin Scheduling
 {
+		if(n==1)
+		{
+			/*
+			If there is only one process, the Process has been executed in FPPS
+			*/
+			return 0;
+		}
     	/*Round Robin Scheduling*/
     	long start=-1,remaining_time=-1,cur=-1;
     	sort(p,p+n,comparison_RemainingTime);              //sort according to Remaining_time
@@ -456,6 +491,13 @@ int main()
     	cout<<"\t\t\tOperating System Scheduling\n\t\t\t\t\t\t-Garvit Joshi\n";
     	cout<<"Enter No. Of Processes:";
     	cin	>>n;
+		while(n<=0)
+		{
+				cout<<"\t\t\t\tWarning "<<warning<<": Number Of Processes Cannot Be less Then or Equal to 0.\n";
+				cout<<"Please Enter No. Of Processes Again:";
+				cin>>n;
+				warning++;
+		}
     	Process p[n];
     	cout<<"====================================================\n";
     	for(long i=0;i<n;i++)
@@ -471,9 +513,10 @@ int main()
         		/*
 				Time Quantum Should Be In Multiples Of Two
 				*/
-        		cout<<"\t\t*ERROR*\n";
+        		cout<<"\t\t\t\tWarning "<<warning<<": Time Quantum Should In Multiples Of Two:\n";
         		cout<<"Enter Time In Multiples Of 2:";
         		cin>>time_q;
+				warning++;
     	}
     	FPPS(p,n,time);                        //Fixed Priority Preemtive Scheduling
     	Round_Robin(p,n,time_q,time);          //Round Robin Scheduling
