@@ -2,11 +2,11 @@
 #include<iostream>
 #include<windows.h>                                    //Sleep() function
 using namespace std;
-long max_arrival=-1,min_arrival=INT_MAX,warning=1;     //Global Variable
+long max_arrival=-1,min_arrival=LONG_MAX,warning=1;     //Global Variable
 /*
 max_arrival will store the maximim arrival time of a process
 min_arrival will store the minimul arrival time of a process
-warning will store the no. of warning that came in during 
+warning will store the no. of warning that came in during
 program execution(due to user input and constraints)
 */
 struct Process
@@ -50,7 +50,7 @@ long display(bool prompt=false)
 	*/	
     time_t now = time(0);
     char* dt = ctime(&now);
-    cout<< dt;
+    cout<< dt;                                     //Displays Date And Time Of System
     cout<<"\n\n\n";
     cout<<"\t\t ||                                                                                         ||\n";
     cout<<"\t\t=================================================================================================\n";
@@ -217,7 +217,7 @@ long FPPS(Process p[],long n,long &time)
     long min_priority,k,current,small_priority_index;
     while(time<=max_arrival)
     {
-        long small_priority=INT_MAX;
+        long small_priority=LONG_MAX;
         for(long i=0;i<n;i++)                           
         {
             /*
