@@ -2,21 +2,21 @@
 #include<iostream>
 #include<windows.h>
 using namespace std;
-int max_arrival=-1,min_arrival=INT_MAX;              	 //Global Variable
+long max_arrival=-1,min_arrival=INT_MAX;              	 //Global Variable
 struct Process
 {
-    	int pid=0;                                       //Process ID
-    	int priority=0;                                  //the Priority 0 is highest priority
-    	int arrival_time=0;                              //Time At Which Process Came
-		int burst_time=0;                                //The Total Time for which process should run
-    	int completion_time=0;                           //Time at which CPU completed the whole process
-    	int turnaround_time=0;                           //Turn_Around_Time=Completetion_Time-Arrival_Time
-		int waiting_time=0;                              //Waiting_Time=Turn_Around_Time-Burst_Time
-    	int response_time=0;                             //RT=CPU got Process first time-Arrival Time
-		int remaining_time=0;                            //Time For Which Process Is Remaining to be Executed  
-    	int CPUtime=-1;                                  //Stores When Process got CPU for first time
+    	long pid=0;                                       //Process ID
+    	long priority=0;                                  //the Priority 0 is highest priority
+    	long arrival_time=0;                              //Time At Which Process Came
+		long burst_time=0;                                //The Total Time for which process should run
+    	long completion_time=0;                           //Time at which CPU completed the whole process
+    	long turnaround_time=0;                           //Turn_Around_Time=Completetion_Time-Arrival_Time
+		long waiting_time=0;                              //Waiting_Time=Turn_Around_Time-Burst_Time
+    	long response_time=0;                             //RT=CPU got Process first time-Arrival Time
+		long remaining_time=0;                            //Time For Which Process Is Remaining to be Executed  
+    	long CPUtime=-1;                                  //Stores When Process got CPU for first time
 };
-vector<int> ready_queue;                             	 //for round robin(stores all the process Index no. for which remaining time is left)
+vector<long> ready_queue;                             	 //for round robin(stores all the process Index no. for which remaining time is left)
 bool comparison_Priority(Process a, Process b)       	 //Driver Function-Sorting According to Priority
 { 
     	return (a.priority < b.priority); 
@@ -37,7 +37,7 @@ bool comparison_RemainingTime(Process a,Process b)    	 //Driver Function-Sortin
 The Above Four Functions Are Used As A Parameter In sort() functions.
 They act as helping functions to sort the process according to our need
 */
-int display(bool prompt=false)
+long display(bool prompt=false)
 {
 		/*
 		Display Function Used for displaying the question at the starting of program
@@ -81,7 +81,7 @@ int display(bool prompt=false)
     	system("CLS");
     	return 0;
 }
-int Enter_Process(int &temp,Process p[],int i)
+long Enter_Process(long &temp,Process p[],long i)
 {
     	/*
     	Function To Enter All Processes. This Function will be called as much as
@@ -114,7 +114,7 @@ int Enter_Process(int &temp,Process p[],int i)
     	cout<<"====================================================\n";
     	return 0;
 }
-int Show_Process(Process p[],int n,bool b=false)
+long Show_Process(Process p[],long n,bool b=false)
 {
     	if(b==false)
     	{
@@ -123,7 +123,7 @@ int Show_Process(Process p[],int n,bool b=false)
         		It Will Only Show PID,Priority,Arrival Time,Burst Time
 				*/
         		cout<<"\nPID || Priority || Arrival Time || Burst Time\n";
-        		for(int i=0;i<n;i++)
+        		for(long i=0;i<n;i++)
         		{
             			cout<<p[i].pid<<"\t"<<p[i].priority<<"\t\t"<<p[i].arrival_time<<"\t\t"<<p[i].burst_time<<"\n";
         		}
@@ -135,20 +135,20 @@ int Show_Process(Process p[],int n,bool b=false)
         		parameter which must be true
 				*/
         		cout<<"\nPID || Priority || Arrival Time || Burst Time || Completion Time || TurnAround Time || Waiting Time || Response Time\n";
-        		for(int i=0;i<n;i++)
+        		for(long i=0;i<n;i++)
         		{
             			cout<<p[i].pid<<"\t"<<p[i].priority<<"\t\t"<<p[i].arrival_time<<"\t\t"<<p[i].burst_time<<"\t\t"<<p[i].completion_time<<"\t\t"<<p[i].turnaround_time<<"\t\t"<<p[i].waiting_time<<"\t\t"<<p[i].CPUtime<<"\n";
         		} 
     	}   
     	return 0; 
 }
-int calculation(Process p[],int n)
+long calculation(Process p[],long n)
 {
     	/*
     	Function Calculates TurnAround Time,Waiting Time,
     	Response Time.
     	*/
-    	for(int i=0;i<n;i++)
+    	for(long i=0;i<n;i++)
     	{
         		p[i].turnaround_time=p[i].completion_time-p[i].arrival_time;
         		p[i].waiting_time=p[i].turnaround_time-p[i].burst_time;
@@ -156,7 +156,7 @@ int calculation(Process p[],int n)
     	}
     	return 0;
 }
-int FPPS(Process p[],int n,int &time)
+long FPPS(Process p[],long n,long &time)
 {
     	/*
     	Fixed Priority Preemtive Scheduling:Processes are 
@@ -167,11 +167,11 @@ int FPPS(Process p[],int n,int &time)
     	system("CLS");
     	sort(p, p + n, comparison_Priority);
     	sort(p, p + n, comparison_ArrivalTime);
-    	int min_priority,k,current,small_priority_index;
+    	long min_priority,k,current,small_priority_index;
     	while(time<=max_arrival)
     	{
-        		int small_priority=INT_MAX;
-        		for(int i=0;i<n;i++)                           
+        		long small_priority=INT_MAX;
+        		for(long i=0;i<n;i++)                           
         		{
             			/*
 						loop to find how many processes are in ready queue.
@@ -190,7 +190,7 @@ int FPPS(Process p[],int n,int &time)
                 				break;
             			}	
         		}
-        		int s=0;
+        		long s=0;
         		while(s<=current)
         		{
         	 			/*
@@ -230,7 +230,7 @@ int FPPS(Process p[],int n,int &time)
     	The Statement Below This Comment Executes a last partially 
     	Running Process and then exits the function
     	*/
-    	int remaining_time=p[small_priority_index].remaining_time;
+    	long remaining_time=p[small_priority_index].remaining_time;
     	if(p[small_priority_index].remaining_time==0)
     	{
     			/*
@@ -259,12 +259,12 @@ int FPPS(Process p[],int n,int &time)
     	} 	
     	return 0;
 }
-int Round_Robin(Process p[],int n,int tq,int &time)    //Round Robin Scheduling
+long Round_Robin(Process p[],long n,long tq,long &time)    //Round Robin Scheduling
 {
     	/*Round Robin Scheduling*/
-    	int start=-1,remaining_time=-1,cur=-1;
+    	long start=-1,remaining_time=-1,cur=-1;
     	sort(p,p+n,comparison_RemainingTime);              //sort according to Remaining_time
-    	for(int i=0;i<n;i++)
+    	for(long i=0;i<n;i++)
     	{
         		/*
         		Finds the index of Process which does 
@@ -281,7 +281,7 @@ int Round_Robin(Process p[],int n,int tq,int &time)    //Round Robin Scheduling
         		}
     	}
     	sort(p+start,p+n,comparison_ArrivalTime);                //sort according to Remaining_time
-    	for(int i=0;i<n;i++)
+    	for(long i=0;i<n;i++)
     	{
        			if(p[i].remaining_time==0)
         		{
@@ -434,13 +434,13 @@ int main()
 		Just Comment The above function call if you are testing the code:
 		this function may take upto more then 5 seconds
 		*/
-    	int n,temp=0,time_q,time=0;
+    	long n,temp=0,time_q,time=0;
     	cout<<"\t\t\tOperating System Scheduling\n\t\t\t\t\t\t-Garvit Joshi\n";
     	cout<<"Enter No. Of Processes:";
     	cin	>>n;
     	Process p[n];
     	cout<<"====================================================\n";
-    	for(int i=0;i<n;i++)
+    	for(long i=0;i<n;i++)
     	{
         		Enter_Process(temp,p,i);
    	 	}
