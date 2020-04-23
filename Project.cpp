@@ -486,7 +486,7 @@ int main()
    	display();
 	/*
 	Just Comment The above function call if you are testing the code:
-	this function may take upto more then 5 seconds
+	this function may take upto more then 5 seconds.
 	*/
     long n,temp=0,time_q,time=0;
     cout<<"\t\t\tOperating System Scheduling\n\t\t\t\t\t\t-Garvit Joshi\n";
