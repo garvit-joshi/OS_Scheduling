@@ -1,5 +1,5 @@
 # OS_Scheduling
-My Operating System Assignment-Lovely Professional University(LPU,Phagwara,Punjab)
+My GitHub Repository for Operating System Assignment-Lovely Professional University(LPU,Phagwara,Punjab)
 ## Question 7:
 Design a scheduling program to implements a Queue with two levels.<br>
 Level 1 : Fixed priority preemptive Scheduling,<br>
