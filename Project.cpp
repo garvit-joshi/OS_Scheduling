@@ -509,12 +509,12 @@ int main()
    	Show_Process(p,n);
     cout<<"Enter Time Quantum(Multiples Of Two):";
     cin>>time_q;
-    while(time_q%2!=0)
+    while(time_q%2!=0 || time_q<2)
     {
         /*
 		Time Quantum Should Be In Multiples Of Two
 		*/
-        cout<<"\t\t\t\tWarning "<<warning<<": Time Quantum Should In Multiples Of Two:\n";
+        cout<<"\t\t\t\tWarning "<<warning<<": Time Quantum Should Be In Multiples Of Two (Positive):\n";
         cout<<"Enter Time In Multiples Of 2:";
         cin>>time_q;
 		warning++;
