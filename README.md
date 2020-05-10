@@ -9,3 +9,5 @@ All the processes in second level queue will complete their execution according 
 ### Consider:
 1.Queue 2 will be processed after Queue 1 becomes empty. <br>
 2.Priority of Queue 2 has lower priority than in Queue 1.<br>
+### Notes:
+Project.exe is compiled in mingw-w64(Compiler) win32(API) seh(Exception) ver 8.1.0.
