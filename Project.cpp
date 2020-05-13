@@ -513,7 +513,7 @@ int main()
 	    cin>>n;
 		warning++;
 	}
-    Process p[n];
+    Process p[n];               //Array Of Objects
     cout<<"====================================================\n";
     for(long i=0;i<n;i++)
     {
