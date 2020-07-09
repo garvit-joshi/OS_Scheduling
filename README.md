@@ -12,4 +12,4 @@ All the processes in second level queue will complete their execution according 
 2. Priority of Queue 2 has lower priority than in Queue 1.<br>
 
 ### Notes:
-Project.exe is compiled in mingw-w64(Compiler) win32(API) seh(Exception) ver 8.1.0.
+Project.exe is compiled in [mingw-w64(Compiler)](http://mingw-w64.org/doku.php) win32(API) seh(Exception) ver 8.1.0.
