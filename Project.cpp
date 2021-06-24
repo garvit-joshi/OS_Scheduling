@@ -12,7 +12,8 @@
 *1. Queue 2 will be processed after Queue 1 becomes empty.                                         *
 *2. Priority of Queue 2 has lower priority than in Queue 1.                                        *
 *****************************************************************************************************/
-#include <bits/stdc++.h>
+#include <vector>
+#include <algorithm>
 #include <iostream>
 #include <windows.h> //Sleep() function
 using namespace std;
@@ -101,7 +102,7 @@ long display(bool prompt = false)
     system("CLS");
     return 0;
 }
-long Enter_Process(long &temp, Process p[], long i)
+long Enter_Process(long &temp, vector<Process> &p, long i)
 {
     /*
     Function To Enter All Processes. This Function will be called as much as
@@ -155,7 +156,7 @@ long Enter_Process(long &temp, Process p[], long i)
     cout << "====================================================\n";
     return 0;
 }
-long Show_Process(Process p[], long n, bool b = false)
+long Show_Process(vector<Process> &p, long n, bool b = false)
 {
     if (b == false)
     {
@@ -183,7 +184,7 @@ long Show_Process(Process p[], long n, bool b = false)
     }
     return 0;
 }
-long calculation(Process p[], long n)
+long calculation(vector<Process> &p, long n)
 {
     /*
     Function Calculates TurnAround Time,Waiting Time,
@@ -206,7 +207,7 @@ long calculation(Process p[], long n)
     }
     return 0;
 }
-long FPPS(Process p[], long n, long &time)
+long FPPS(vector<Process> &p, long n, long &time)
 {
     /*
     Fixed Priority Preemtive Scheduling:Processes are 
@@ -226,8 +227,8 @@ long FPPS(Process p[], long n, long &time)
         return 0;
     }
     time = min_arrival;
-    sort(p, p + n, comparison_Priority);
-    sort(p, p + n, comparison_ArrivalTime);
+    sort(p.begin(), p.end(), comparison_Priority);
+    sort(p.begin(), p.end(), comparison_ArrivalTime);
     long min_priority, k, current, small_priority_index;
     while (time <= max_arrival)
     {
@@ -320,7 +321,7 @@ long FPPS(Process p[], long n, long &time)
     }
     return 0;
 }
-long Round_Robin(Process p[], long n, long tq, long &time) //Round Robin Scheduling
+long Round_Robin(vector<Process> &p, long n, long tq, long &time) //Round Robin Scheduling
 {
     if (n == 1)
     {
@@ -331,7 +332,7 @@ long Round_Robin(Process p[], long n, long tq, long &time) //Round Robin Schedul
     }
     /*Round Robin Scheduling*/
     long start = -1, remaining_time = -1, cur = -1;
-    sort(p, p + n, comparison_RemainingTime); //sort according to Remaining_time
+    sort(p.begin(), p.end(), comparison_RemainingTime); //sort according to Remaining_time
     for (long i = 0; i < n; i++)
     {
         /*
@@ -348,7 +349,7 @@ long Round_Robin(Process p[], long n, long tq, long &time) //Round Robin Schedul
             break;
         }
     }
-    sort(p + start, p + n, comparison_ArrivalTime); //sort according to Remaining_time
+    sort(p.begin() + start, p.begin() + n, comparison_ArrivalTime); //sort according to Remaining_time
     for (long i = 0; i < n; i++)
     {
         if (p[i].remaining_time == 0)
@@ -502,7 +503,7 @@ int main()
 	Just Comment the above function call if you are testing the code:
 	this function may take upto more then 5 seconds.
 	*/
-    long n, temp = 0, time_q, time = 0;
+    long n = 0, temp = 0, time_q = 0, time = 0;
     cout << "\t\t\tOperating System Scheduling\n\t\t\t\t\t\t-Garvit Joshi\n";
     cout << "Enter No. Of Processes:";
     cin >> n;
@@ -513,7 +514,7 @@ int main()
         cin >> n;
         warning++;
     }
-    Process p[n]; //Array Of Objects
+    vector<Process> p(n);
     cout << "====================================================\n";
     for (long i = 0; i < n; i++)
     {
@@ -536,7 +537,7 @@ int main()
     FPPS(p, n, time);                //Fixed Priority Preemtive Scheduling
     Round_Robin(p, n, time_q, time); //Round Robin Scheduling
     calculation(p, n);
-    sort(p, p + n, comparison_PID);
+    sort(p.begin(), p.end(), comparison_PID);
     Show_Process(p, n, true);
     cout << "\n";
     cout << "All Process Completed In " << time << " unit time.\n\n";
