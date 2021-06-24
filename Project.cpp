@@ -1,23 +1,29 @@
 /****************************************************************************************************
-*Design a scheduling program to implements a Queue with two levels:                                *       
-*Level 1 : Fixed priority preemptive Scheduling                                                    *
-*Level 2 : Round Robin Scheduling                                                                  *
-*For a Fixed priority preemptive Scheduling (Queue 1), the Priority 0 is highest priority.         *
-*If one process P1 is scheduled and running , another process P2 with higher priority comes.       *
-*The New process (high priority) process P2 preempts currently running process P1 and process      * 
-*P1 will go to second level queue. Time for which process will strictly execute must be            * 
-*considered in the multiples of 2. All the processes in second level queue will complete their     *
-*execution according to round robin scheduling.                                                    *
-*Consider:                                                                                         *
-*1. Queue 2 will be processed after Queue 1 becomes empty.                                         *
-*2. Priority of Queue 2 has lower priority than in Queue 1.                                        *
-*****************************************************************************************************/
+ *Design a scheduling program to implements a Queue with two levels:                                *       
+ *Level 1 : Fixed priority preemptive Scheduling                                                    *
+ *Level 2 : Round Robin Scheduling                                                                  *
+ *For a Fixed priority preemptive Scheduling (Queue 1), the Priority 0 is highest priority.         *
+ *If one process P1 is scheduled and running , another process P2 with higher priority comes.       *
+ *The New process (high priority) process P2 preempts currently running process P1 and process      * 
+ *P1 will go to second level queue. Time for which process will strictly execute must be            * 
+ *considered in the multiples of 2. All the processes in second level queue will complete their     *
+ *execution according to round robin scheduling.                                                    *
+ *Consider:                                                                                         *
+ *1. Queue 2 will be processed after Queue 1 becomes empty.                                         *
+ *2. Priority of Queue 2 has lower priority than in Queue 1.                                        *
+ *****************************************************************************************************/
 #include <vector>
+
 #include <algorithm>
+
 #include <iostream>
+
 #include <windows.h> //Sleep() function
+
 using namespace std;
+
 long max_arrival = -1, min_arrival = LONG_MAX, warning = 1; //Global Variable
+
 /*
 max_arrival will store the maximim arrival time of a process
 min_arrival will store the minimul arrival time of a process
@@ -37,19 +43,24 @@ struct Process
     long remaining_time = 0;  //Time For Which Process Is Remaining to be Executed
     long CPUtime = -1;        //Stores When Process got CPU for first time
 };
-vector<long> ready_queue;                      //for round robin(stores all the process Index no. for which remaining time is left)
+
+vector<long> ready_queue; //for round robin(stores all the process Index no. for which remaining time is left)
+
 bool comparison_Priority(Process a, Process b) //Driver Function-Sorting According to Priority
 {
     return (a.priority < b.priority);
 }
+
 bool comparison_ArrivalTime(Process a, Process b) //Driver Function-Sorting According to Arrival Time(Acending Order)
 {
     return (a.arrival_time < b.arrival_time);
 }
+
 bool comparison_PID(Process a, Process b) //Driver Function-Sorting According to PID(Acending Order)
 {
     return (a.pid < b.pid);
 }
+
 bool comparison_RemainingTime(Process a, Process b) //Driver Function-Sorting According to Remaining Time(Acending Order)
 {
     return (a.remaining_time < b.remaining_time);
@@ -58,6 +69,7 @@ bool comparison_RemainingTime(Process a, Process b) //Driver Function-Sorting Ac
 The Above Four Functions Are Used As A Parameter In sort() functions.
 They act as helping functions to sort the process according to our need
 */
+
 long display(bool prompt = false)
 {
     /*
@@ -102,6 +114,7 @@ long display(bool prompt = false)
     system("CLS");
     return 0;
 }
+
 long Enter_Process(long &temp, vector<Process> &p, long i)
 {
     /*
@@ -156,6 +169,7 @@ long Enter_Process(long &temp, vector<Process> &p, long i)
     cout << "====================================================\n";
     return 0;
 }
+
 long Show_Process(vector<Process> &p, long n, bool b = false)
 {
     if (b == false)
@@ -184,6 +198,7 @@ long Show_Process(vector<Process> &p, long n, bool b = false)
     }
     return 0;
 }
+
 long calculation(vector<Process> &p, long n)
 {
     /*
@@ -207,6 +222,7 @@ long calculation(vector<Process> &p, long n)
     }
     return 0;
 }
+
 long FPPS(vector<Process> &p, long n, long &time)
 {
     /*
@@ -321,6 +337,7 @@ long FPPS(vector<Process> &p, long n, long &time)
     }
     return 0;
 }
+
 long Round_Robin(vector<Process> &p, long n, long tq, long &time) //Round Robin Scheduling
 {
     if (n == 1)
@@ -496,6 +513,7 @@ long Round_Robin(vector<Process> &p, long n, long tq, long &time) //Round Robin 
     }
     return 0;
 }
+
 int main()
 {
     display();
