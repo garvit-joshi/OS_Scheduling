@@ -1,0 +1,30 @@
+name: Windows
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup MSVC
+      uses: ilammy/msvc-dev-cmd@v1
+
+    - name: build
+      run: |
+        cl
+        cl /EHsc Project.cpp
+    - name: Upload Executables(x64)
+      uses: actions/upload-artifact@v2
+      with:
+        name: Application
+        path: |
+          D:/a/Main.exe
+    - name: Commit change & Push
+      run: |
+        git config user.name 'github-actions[bot]'
+        git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+        git commit -am "bot: Updated Binaries"
+        git push
